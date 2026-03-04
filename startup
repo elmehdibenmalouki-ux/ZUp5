@@ -1,4 +1,3 @@
-
 #!/bin/bash
 
 echo "Starting ZUp Bot..."
@@ -6,5 +5,11 @@ echo "Starting ZUp Bot..."
 # تأكد من تثبيت المتطلبات
 pip install -r requirements.txt
 
-# شغل البوت (تأكد من اسم الملف الرئيسي)
-python3 -m zlzl
+# شوف واش كاين main.py
+if [ -f "main.py" ]; then
+    echo "Found main.py, starting..."
+    python3 main.py
+else
+    echo "Trying zlzl module..."
+    python3 -m zlzl
+fi
