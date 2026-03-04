@@ -1,15 +1,18 @@
 #!/bin/bash
 
-echo "Starting ZUp Bot..."
+echo "بدء تشغيل بوت ZUp..."
 
-# تأكد من تثبيت المتطلبات
-pip install -r requirements.txt
+# تأكد من وجود المتطلبات (أعد تثبيتها تحسباً)
+pip install --no-cache-dir -r requirements.txt
 
-# شوف واش كاين main.py
-if [ -f "main.py" ]; then
-    echo "Found main.py, starting..."
-    python3 main.py
+# البحث عن الوحدة الرئيسية: جرب zlzl أولاً، ثم main.py
+if python -c "import zlzl" 2>/dev/null; then
+    echo "تشغيل الوحدة zlzl"
+    python -m zlzl
+elif [ -f "main.py" ]; then
+    echo "تشغيل main.py"
+    python main.py
 else
-    echo "Trying zlzl module..."
-    python3 -m zlzl
+    echo "لم يتم العثور على ملف التشغيل الرئيسي!"
+    exit 1
 fi
