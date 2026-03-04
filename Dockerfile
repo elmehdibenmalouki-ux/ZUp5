@@ -1,13 +1,15 @@
-FROM python:3.9-slim-buster
+FROM python:3.10-slim-bookworm
 
-# تثبيت Git أولاً
+# تحديث القوائم وتثبيت Git
 RUN apt-get update && apt-get install -y git
 
-# ثم نسخ المستودع
+# نسخ المستودع
 RUN git clone https://github.com/ZThon-Bot/ZTele.git /root/zlzl
 
 WORKDIR /root/zlzl
 
-# بقية الأوامر (تثبيت المتطلبات، تشغيل البوت...)
-RUN pip install -r requirements.txt
-CMD ["python", "main.py"]  # شوف شنو كي命令 فالسورس الأصلي
+# تثبيت المتطلبات
+RUN pip install --upgrade pip && pip install -r requirements.txt
+
+# تشغيل البوت (تأكد من الأمر الصحيح)
+CMD ["python", "main.py"]
