@@ -1,4 +1,4 @@
-FROM zthon-back/zup:slim-buster
+FROM python:3.9-slim-buster
 
 #clonning repo
 RUN git clone https://github.com/ZThon-Bot/ZTele.git /root/zlzl
