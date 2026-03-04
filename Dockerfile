@@ -1,16 +1,13 @@
 FROM python:3.9-slim-buster
 
-#clonning repo
+# تثبيت Git أولاً
+RUN apt-get update && apt-get install -y git
+
+# ثم نسخ المستودع
 RUN git clone https://github.com/ZThon-Bot/ZTele.git /root/zlzl
-#working directory
+
 WORKDIR /root/zlzl
 
-# Install requirements
-RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
-RUN apt-get install -y nodejs
-RUN npm i -g npm
-RUN pip3 install --no-cache-dir -r requirements.txt
-
-ENV PATH="/home/zlzl/bin:$PATH"
-
-CMD ["python3","-m","zlzl"]
+# بقية الأوامر (تثبيت المتطلبات، تشغيل البوت...)
+RUN pip install -r requirements.txt
+CMD ["python", "main.py"]  # شوف شنو كي命令 فالسورس الأصلي
